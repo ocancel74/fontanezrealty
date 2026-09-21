@@ -121,11 +121,17 @@ collections:
           - { label: "Gimnasio", value: "gym" }
           - { label: "Muelle / Marina", value: "marina" }
           - { label: "Amueblado", value: "furnished" }
+      # mainImage and gallery have no i18n key on purpose: the photos are the
+      # same regardless of language, so they're only edited once, from the
+      # Spanish (default locale) entry. The English build reuses them
+      # automatically (see scripts/build.js). Decap CMS also doesn't
+      # correctly support i18n:duplicate on list widgets, which was the
+      # earlier (worse) alternative — it required re-uploading every photo
+      # a second time in the English tab.
       - name: mainImage
         label: "Fotografía principal"
         widget: image
         required: false
-        i18n: duplicate
         media_folder: "/assets/properties/{{fields.propertyId}}"
         public_folder: "assets/properties/{{fields.propertyId}}"
       - name: gallery
@@ -134,8 +140,6 @@ collections:
         field: { name: image, label: Imagen, widget: image, media_folder: "/assets/properties/{{fields.propertyId}}", public_folder: "assets/properties/{{fields.propertyId}}" }
         max: 30
         required: false
-        i18n: true # Nota: Decap CMS no soporta "duplicate" en widgets de tipo list;
-                   # esto implica subir las fotos en cada idioma. Ver README.
       - { name: description, label: "Descripción", widget: markdown, i18n: true, required: false }
 
   - name: testimonials

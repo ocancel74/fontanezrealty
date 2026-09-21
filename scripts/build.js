@@ -110,9 +110,19 @@ function normalizeGallery(gallery) {
 }
 
 function buildProperties(lang) {
+  // mainImage/gallery aren't part of the CMS's i18n fields (see
+  // admin/config.yml) — they're only ever edited from the Spanish (default
+  // locale) entry, so the English build borrows them from there by slug.
+  const esBySlug = {};
+  if (lang !== "es") {
+    readMarkdownCollection("properties", "es").forEach((r) => { esBySlug[r.slug] = r; });
+  }
+
   return readMarkdownCollection("properties", lang).map((raw) => {
-    const gallery = normalizeGallery(raw.gallery);
-    const mainImage = raw.mainImage || gallery[0] || "";
+    const esMatch = esBySlug[raw.slug];
+    const rawGallery = (raw.gallery && raw.gallery.length) ? raw.gallery : (esMatch && esMatch.gallery);
+    const gallery = normalizeGallery(rawGallery);
+    const mainImage = raw.mainImage || (esMatch && esMatch.mainImage) || gallery[0] || "";
     const descriptionHtml = raw._body ? marked.parse(raw._body) : "";
     const relUrl = "properties/" + raw.slug + "/" + (lang === "en" ? "en/" : "");
     return {
