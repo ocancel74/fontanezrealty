@@ -30,6 +30,21 @@
       window.netlifyIdentity.init({
         APIUrl: "https://fontanezrealty-cms.netlify.app/.netlify/identity"
       });
+
+      // The widget's own automatic detection of #invite_token /
+      // #recovery_token etc. relies on an internal iframe-load timing trick
+      // that races against Decap CMS's own (async, hash-touching) startup
+      // and reliably loses, silently dropping the token in favor of a plain
+      // login form. Running our own check after the whole page has finished
+      // loading (well after Decap has settled) works reliably instead.
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          var tokenMatch = (window.location.hash || "").match(/(confirmation|invite|recovery|email_change)_token=([^&]+)/);
+          if (tokenMatch && window.netlifyIdentity.store && typeof window.netlifyIdentity.store.verifyToken === "function") {
+            window.netlifyIdentity.store.verifyToken(tokenMatch[1], tokenMatch[2]);
+          }
+        }, 500);
+      });
     }
   </script>
 
