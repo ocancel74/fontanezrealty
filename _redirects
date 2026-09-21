@@ -3,4 +3,4 @@
 # Netlify Identity's invite/confirmation/recovery emails link to this site's
 # root; send them straight to the CMS instead. The #token=... fragment is
 # preserved automatically by the browser across a same-origin redirect.
-/  /admin/  302
+/  /admin/  302!
