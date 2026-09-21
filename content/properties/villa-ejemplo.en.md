@@ -1,36 +1,38 @@
 ---
-title: "Modern pool villa — 5 bedrooms"
+title: Modern pool villa — 5 bedrooms
 published: true
 featured: true
-status: "for_sale"
-propertyType: "house"
-price: 1000000
-address: "Bo. Mamey 1"
-city: "Guaynabo"
-municipality: "Guaynabo"
+status: for_sale
+propertyType: house
+price: 2000000
+address: Bo. Mamey 1
+city: Guaynabo
+municipality: Guaynabo
 zip: "00971"
-country: "Puerto Rico"
+country: Puerto Rico
 bedrooms: 5
 bathrooms: 2
 interiorArea: 5475
-lotArea:
+lotArea: null
 yearBuilt: 2026
-parking:
-hoa:
+parking: null
+hoa: null
 mlsId: ""
-propertyId: "JF-100"
+propertyId: JF-100
 features:
-  - "pool"
-  - "terrace"
-  - "view"
-mainImage: "assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
+  - pool
+  - terrace
+  - view
+  - generator
+  - cistern
+mainImage: assets/properties/villa-ejemplo/01-piscina-aerea.jpg
 gallery:
-  - image: "assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
-  - image: "assets/properties/villa-ejemplo/02-sala-comedor.jpg"
-  - image: "assets/properties/villa-ejemplo/03-exterior-atardecer.jpg"
-  - image: "assets/properties/villa-ejemplo/04-piscina-noche.jpg"
-  - image: "assets/properties/villa-ejemplo/05-exterior-noche.jpg"
-  - image: "assets/properties/villa-ejemplo/06-escalera-terraza.jpg"
+  - image: assets/properties/villa-ejemplo/01-piscina-aerea.jpg
+  - image: assets/properties/villa-ejemplo/02-sala-comedor.jpg
+  - image: assets/properties/villa-ejemplo/03-exterior-atardecer.jpg
+  - image: assets/properties/villa-ejemplo/04-piscina-noche.jpg
+  - image: assets/properties/villa-ejemplo/05-exterior-noche.jpg
+  - image: assets/properties/villa-ejemplo/06-escalera-terraza.jpg
 description: |
   Modern two-story villa with a pool, rooftop terrace, and floor-to-ceiling
   windows throughout. Contemporary design with light-toned finishes and
