@@ -7,7 +7,7 @@ propertyType: "house"
 price: 1000000
 address: "Bo. Mamey 1"
 city: "Guaynabo"
-municipality: "Puerto Rico"
+municipality: "Guaynabo"
 zip: "00971"
 bedrooms: 5
 bathrooms: 2
