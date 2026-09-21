@@ -3,16 +3,18 @@
    ========================================================================== */
 
 :root {
-  /* Palette: white / charcoal / gold, used sparingly */
+  /* Palette: sand / soft navy-charcoal / gold, used sparingly */
   --color-white: #ffffff;
-  --color-cream: #faf9f6;
-  --color-charcoal: #1a1a1a;
-  --color-charcoal-soft: #2b2b2b;
-  --color-gray-900: #1f1f1f;
-  --color-gray-700: #4a4a4a;
-  --color-gray-500: #767676;
-  --color-gray-300: #d6d3cc;
-  --color-gray-100: #f1efe9;
+  --color-cream: #fdfaf5;
+  --color-charcoal: #38424f;
+  --color-charcoal-soft: #4a5563;
+  --color-gray-900: #2a323c;
+  --color-gray-700: #5b6472;
+  --color-gray-500: #8b8577;
+  --color-gray-300: #e3d7bf;
+  --color-gray-100: #f6efe1;
+  --color-sand: #f6efe1;
+  --color-sand-deep: #ecdfc2;
   --color-gold: #b8925a;
   --color-gold-light: #d8b98a;
   --color-gold-dark: #8f6f3f;
@@ -428,10 +430,10 @@ p { margin: 0 0 1em; }
   display: flex;
   align-items: center;
   color: var(--color-white);
-  background-image: linear-gradient(180deg, rgba(15, 15, 15, 0.5), rgba(15, 15, 15, 0.78)), url("../assets/images/hero-default.svg");
+  background-image: linear-gradient(180deg, rgba(56, 44, 28, 0.45), rgba(40, 32, 22, 0.72)), url("../assets/images/hero-default.svg");
   background-size: cover;
   background-position: center;
-  background-color: #22231f;
+  background-color: #4a3c2c;
 }
 
 .hero-content {
