@@ -38,27 +38,29 @@ más abajo.
 
 ---
 
-## 1. Crear el repositorio en GitHub
+## 1. Repositorio en GitHub
 
-1. Crea un repositorio nuevo en GitHub (público o privado).
-2. Sube el contenido de esta carpeta a ese repositorio:
+✅ Ya hecho — este proyecto vive en
+**[github.com/ocancel74/fontanezrealty](https://github.com/ocancel74/fontanezrealty)**
+(rama `main`). Para futuros cambios locales:
 
 ```bash
-git init
 git add .
-git commit -m "Sitio inicial de Joe Fontanez Real Estate"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/TU-REPO.git
-git push -u origin main
+git commit -m "Describe el cambio"
+git push
 ```
 
 ## 2. Configurar el CMS (`admin/config.yml`)
 
-Abre `admin/config.yml` y reemplaza:
+`backend.repo`, `site_url` y `display_url` ya están configurados para este
+repositorio (`ocancel74/fontanezrealty`,
+`https://ocancel74.github.io/fontanezrealty`). Lo único que falta es:
 
-- `backend.repo` → `TU-USUARIO/TU-REPO`
 - `backend.base_url` → la URL de tu OAuth provider (ver paso 3)
-- `site_url` / `display_url` → la URL pública final del sitio
+
+Si más adelante conectas un dominio personalizado (paso 6), actualiza
+`site_url`/`display_url` aquí y `siteUrl` en el CMS (Configuración →
+Configuración general) a la nueva URL.
 
 ## 3. Configurar la autenticación (OAuth provider)
 
@@ -118,12 +120,12 @@ en GitHub Actions como localmente.
 ## 6. Dominio personalizado (`joefontanez.com`)
 
 Mientras no exista un dominio propio, el sitio funcionará en:
-`https://TU-USUARIO.github.io/TU-REPO/`
+`https://ocancel74.github.io/fontanezrealty/`
 
 Cuando tengas el dominio:
 
 1. En tu proveedor de DNS, crea un registro `CNAME` apuntando
-   `www.joefontanez.com` → `TU-USUARIO.github.io` (y/o los registros `A` de
+   `www.joefontanez.com` → `ocancel74.github.io` (y/o los registros `A` de
    GitHub Pages para el dominio raíz — ver la documentación de GitHub Pages
    sobre dominios personalizados apex).
 2. En GitHub: Settings → Pages → Custom domain → escribe `joefontanez.com` y

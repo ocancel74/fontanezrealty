@@ -1,26 +1,26 @@
 # Decap CMS configuration
 # Docs: https://decapcms.org/docs/configuration-options/
 #
-# IMPORTANT — before this works you must:
-#   1. Replace `repo` below with your GitHub "owner/repository".
-#   2. Replace `base_url` with your deployed OAuth provider URL (see README.md,
-#      section "Configurar autenticación del CMS"). GitHub Pages cannot host
-#      the OAuth token exchange itself (it needs a server-side client secret),
-#      so a small separate OAuth provider is required — this is normal for
-#      any Decap/Netlify-CMS site hosted on GitHub Pages.
-#   3. Create a GitHub OAuth App pointing at that same OAuth provider.
+# IMPORTANT — before login works you must still:
+#   1. Deploy an OAuth provider and replace `base_url` below with its URL
+#      (see README.md, section "Configurar autenticación del CMS"). GitHub
+#      Pages cannot host the OAuth token exchange itself (it needs a
+#      server-side client secret), so a small separate OAuth provider is
+#      required — this is normal for any Decap/Netlify-CMS site hosted on
+#      GitHub Pages.
+#   2. Create a GitHub OAuth App pointing at that same OAuth provider.
 # None of this involves putting secrets in this repository.
 
 backend:
   name: github
-  repo: REEMPLAZAR-CON/owner-repo # ejemplo: joefontanez/joefontanez-realestate
+  repo: ocancel74/fontanezrealty
   branch: main
   base_url: https://REEMPLAZAR-CON-TU-OAUTH-PROVIDER.example.com
   auth_endpoint: auth
 
 # Public site root used to preview entries while editing.
-site_url: https://REEMPLAZAR-CON-TU-DOMINIO.example.com
-display_url: https://REEMPLAZAR-CON-TU-DOMINIO.example.com
+site_url: https://ocancel74.github.io/fontanezrealty
+display_url: https://ocancel74.github.io/fontanezrealty
 logo_url: /assets/icons/favicon.svg
 
 # Media uploaded through the global media picker (agent photo, hero image, etc.)
