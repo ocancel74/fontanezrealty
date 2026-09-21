@@ -42,16 +42,20 @@
       '<div class="property-card-price">' + fmtPrice(p.price, p.currency, p.status) +
       (p.propertyType ? ' <small>· ' + t("type." + p.propertyType, lang) + "</small>" : "") + "</div>" +
       '<h3 class="property-card-title"><a href="' + propertyUrl(p) + '">' + escapeHtml(p.title) + "</a></h3>" +
-      '<div class="property-card-location">' + escapeHtml([p.city, p.municipality].filter(Boolean).join(", ")) + "</div>" +
-      '<div class="property-card-meta">' +
-      (p.bedrooms != null ? "<span>" + p.bedrooms + " " + t("detail.beds", lang) + "</span>" : "") +
-      (p.bathrooms != null ? "<span>" + p.bathrooms + " " + t("detail.baths", lang) + "</span>" : "") +
-      (p.interiorArea ? "<span>" + Number(p.interiorArea).toLocaleString() + " ft²</span>" : "") +
-      "</div>" +
+      '<div class="property-card-location">' + escapeHtml([p.address, p.city, p.municipality].filter(Boolean).join(", ")) + "</div>" +
+      '<div class="property-card-meta">' + specLine(p, lang) + "</div>" +
       '<a href="' + propertyUrl(p) + '" class="btn btn-outline btn-sm btn-block">' + t("properties.card.viewdetails", lang) + "</a>" +
       "</div>" +
       "</article>"
     );
+  }
+
+  function specLine(p, lang) {
+    var parts = [];
+    if (p.bedrooms != null) parts.push(p.bedrooms + " " + t("detail.beds", lang));
+    if (p.bathrooms != null) parts.push(p.bathrooms + " " + t("detail.baths", lang));
+    if (p.interiorArea) parts.push(Number(p.interiorArea).toLocaleString() + " ft²");
+    return parts.join(" &nbsp;|&nbsp; ");
   }
 
   function escapeHtml(str) {
