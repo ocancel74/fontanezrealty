@@ -689,6 +689,98 @@ p { margin: 0 0 1em; }
 .whatsapp-float:hover { transform: scale(1.08); }
 .whatsapp-float svg { width: 28px; height: 28px; fill: var(--color-white); }
 
+/* Home floating button */
+.home-float {
+  position: fixed;
+  right: 22px;
+  bottom: 92px;
+  z-index: 900;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast);
+}
+
+.home-float:hover { transform: scale(1.08); background: var(--color-gold-dark); }
+.home-float svg { width: 26px; height: 26px; stroke: var(--color-white); }
+
+/* Property gallery lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(20, 16, 10, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.lightbox-overlay.is-open { display: flex; }
+
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover { background: rgba(255, 255, 255, 0.24); }
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+}
+
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
+.lightbox-close svg,
+.lightbox-prev svg,
+.lightbox-next svg { width: 22px; height: 22px; stroke: var(--color-white); fill: none; }
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
 /* Loading / empty states */
 .state-message {
   text-align: center;

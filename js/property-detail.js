@@ -41,7 +41,7 @@
     var visible = images.slice(0, 5);
     return visible.map(function (src, i) {
       var extra = i === 4 && images.length > 5 ? ' class="gallery-more" data-count="+' + (images.length - 5) + '"' : "";
-      return '<a href="' + src + '" target="_blank" rel="noopener"' + extra + '><img src="' + src + '" alt="' + escapeHtml(p.title) + " " + (i + 1) + '" loading="lazy"></a>';
+      return '<a href="' + src + '" data-index="' + i + '"' + extra + '><img src="' + src + '" alt="' + escapeHtml(p.title) + " " + (i + 1) + '" loading="lazy"></a>';
     }).join("");
   }
 
@@ -85,8 +85,8 @@
 
     document.querySelectorAll("[data-field='beds']").forEach(function (el) { el.textContent = p.bedrooms != null ? p.bedrooms : "—"; });
     document.querySelectorAll("[data-field='baths']").forEach(function (el) { el.textContent = p.bathrooms != null ? p.bathrooms : "—"; });
-    document.querySelectorAll("[data-field='area']").forEach(function (el) { el.textContent = p.interiorArea ? Number(p.interiorArea).toLocaleString() + " ft²" : "—"; });
-    document.querySelectorAll("[data-field='lot']").forEach(function (el) { el.textContent = p.lotArea ? Number(p.lotArea).toLocaleString() + " ft²" : "—"; });
+    document.querySelectorAll("[data-field='area']").forEach(function (el) { el.textContent = p.interiorArea ? Number(p.interiorArea).toLocaleString() + " Sq.Ft." : "—"; });
+    document.querySelectorAll("[data-field='lot']").forEach(function (el) { el.textContent = p.lotArea ? Number(p.lotArea).toLocaleString() + " Sq.Ft." : "—"; });
     document.querySelectorAll("[data-field='year']").forEach(function (el) { el.textContent = p.yearBuilt || "—"; });
     document.querySelectorAll("[data-field='parking']").forEach(function (el) { el.textContent = p.parking != null ? p.parking : "—"; });
 
@@ -117,6 +117,71 @@
     });
 
     document.title = p.title + " | Joe Fontanez Real Estate";
+    initLightbox(p);
+  }
+
+  function initLightbox(p) {
+    var raw = (p.gallery && p.gallery.length ? p.gallery : [p.mainImage]).filter(Boolean);
+    if (!raw.length) return;
+    var images = raw.map(function (src) {
+      return /^https?:\/\//.test(src) ? src : rootPath() + src;
+    });
+
+    var overlay = document.querySelector(".lightbox-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.className = "lightbox-overlay";
+      overlay.innerHTML =
+        '<button type="button" class="lightbox-close" aria-label="Close"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+        '<button type="button" class="lightbox-prev" aria-label="Previous"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+        '<img alt="">' +
+        '<button type="button" class="lightbox-next" aria-label="Next"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>' +
+        '<span class="lightbox-counter"></span>';
+      document.body.appendChild(overlay);
+    }
+
+    var imgEl = overlay.querySelector("img");
+    var counterEl = overlay.querySelector(".lightbox-counter");
+    var current = 0;
+
+    function show(index) {
+      current = (index + images.length) % images.length;
+      imgEl.src = images[current];
+      imgEl.alt = p.title + " " + (current + 1);
+      counterEl.textContent = (current + 1) + " / " + images.length;
+    }
+
+    function open(index) {
+      show(index);
+      overlay.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      overlay.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+
+    overlay.querySelector(".lightbox-close").onclick = close;
+    overlay.querySelector(".lightbox-prev").onclick = function () { show(current - 1); };
+    overlay.querySelector(".lightbox-next").onclick = function () { show(current + 1); };
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
+
+    document.addEventListener("keydown", function (e) {
+      if (!overlay.classList.contains("is-open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+
+    document.querySelectorAll(".gallery a[data-index]").forEach(function (link) {
+      if (link.dataset.lightboxBound) return;
+      link.dataset.lightboxBound = "1";
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        open(parseInt(link.getAttribute("data-index"), 10) || 0);
+      });
+    });
   }
 
   function showNotFound(lang) {

@@ -54,7 +54,7 @@
     var parts = [];
     if (p.bedrooms != null) parts.push(p.bedrooms + " " + t("detail.beds", lang));
     if (p.bathrooms != null) parts.push(p.bathrooms + " " + t("detail.baths", lang));
-    if (p.interiorArea) parts.push(Number(p.interiorArea).toLocaleString() + " ft²");
+    if (p.interiorArea) parts.push(Number(p.interiorArea).toLocaleString() + " Sq.Ft.");
     return parts.join(" &nbsp;|&nbsp; ");
   }
 
