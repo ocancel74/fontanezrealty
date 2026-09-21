@@ -1,9 +1,7 @@
 items:
-  - name: "San Juan"
-  - name: "Guaynabo"
-  - name: "Carolina"
-  - name: "Bayamón"
-  - name: "Dorado"
-  - name: "Caguas"
-  - name: "Ponce"
-  - name: "Mayagüez"
+  - name: San Juan
+  - name: Guaynabo
+  - name: Carolina
+  - name: Bayamón
+  - name: Dorado
+  - name: Caguas
