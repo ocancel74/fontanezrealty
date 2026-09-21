@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <script>
+    // Capture the raw URL hash before anything else on the page (including
+    // the Identity widget script) has a chance to touch it — in practice it
+    // gets rewritten to "#/" almost immediately once that script loads.
+    window.__authHash = window.location.hash;
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
@@ -9,6 +15,37 @@
   <style>
     body { font-family: -apple-system, sans-serif; }
     #nc-root .css-1a1044o-Loader-defaultLoaderStyles { border-color: #b8925a transparent transparent transparent !important; }
+
+    #set-password-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(30, 30, 30, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #set-password-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 32px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.25);
+    }
+    #set-password-card h2 { margin: 0 0 8px; font-size: 1.2rem; color: #1a1a1a; }
+    #set-password-card p { margin: 0 0 20px; font-size: 0.88rem; color: #666; }
+    #set-password-card input {
+      width: 100%; box-sizing: border-box; padding: 10px 12px; margin-bottom: 12px;
+      border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem;
+    }
+    #set-password-card button {
+      width: 100%; padding: 11px; background: #1a1a1a; color: #fff; border: none;
+      border-radius: 4px; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    }
+    #set-password-card button:disabled { opacity: 0.6; cursor: default; }
+    #set-password-error { color: #a94442; font-size: 0.85rem; margin: -4px 0 12px; display: none; }
+    #set-password-success { color: #3f7d5c; font-size: 0.9rem; margin: -4px 0 12px; display: none; }
   </style>
 </head>
 <body>
@@ -19,6 +56,8 @@
   -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
+    var IDENTITY_URL = "https://fontanezrealty-cms.netlify.app/.netlify/identity";
+
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", function (user) {
         if (!user) {
@@ -27,25 +66,80 @@
           });
         }
       });
-      window.netlifyIdentity.init({
-        APIUrl: "https://fontanezrealty-cms.netlify.app/.netlify/identity"
-      });
-
-      // The widget's own automatic detection of #invite_token /
-      // #recovery_token etc. relies on an internal iframe-load timing trick
-      // that races against Decap CMS's own (async, hash-touching) startup
-      // and reliably loses, silently dropping the token in favor of a plain
-      // login form. Running our own check after the whole page has finished
-      // loading (well after Decap has settled) works reliably instead.
-      window.addEventListener("load", function () {
-        setTimeout(function () {
-          var tokenMatch = (window.location.hash || "").match(/(confirmation|invite|recovery|email_change)_token=([^&]+)/);
-          if (tokenMatch && window.netlifyIdentity.store && typeof window.netlifyIdentity.store.verifyToken === "function") {
-            window.netlifyIdentity.store.verifyToken(tokenMatch[1], tokenMatch[2]);
-          }
-        }, 500);
-      });
+      window.netlifyIdentity.init({ APIUrl: IDENTITY_URL });
     }
+
+    // netlify-identity-widget's own automatic handling of #invite_token /
+    // #recovery_token / #confirmation_token / #email_change_token renders
+    // its "set password" form inside an internal iframe that, in this
+    // cross-domain setup (CMS on GitHub Pages, Identity on Netlify), ends up
+    // empty — the state updates but nothing visible ever appears, leaving
+    // no way to set a password. Bypassing it entirely with our own minimal
+    // form that calls the same underlying Identity REST endpoint directly.
+    (function () {
+      var GOTRUE_TYPE = { confirmation: "signup", invite: "signup", recovery: "recovery", email_change: "email_change" };
+      var match = (window.__authHash || "").match(/(confirmation|invite|recovery|email_change)_token=([^&]+)/);
+      if (!match) return;
+
+      var token = match[2];
+      var gotrueType = GOTRUE_TYPE[match[1]];
+      var isRecovery = match[1] === "recovery";
+
+      var overlay = document.createElement("div");
+      overlay.id = "set-password-overlay";
+      overlay.innerHTML =
+        '<div id="set-password-card">' +
+        "<h2>" + (isRecovery ? "Restablecer tu contraseña" : "Crear tu contraseña") + "</h2>" +
+        "<p>" + (isRecovery ? "Escribe tu nueva contraseña para el panel administrativo." : "Ya casi — elige una contraseña para entrar al panel administrativo.") + "</p>" +
+        '<div id="set-password-error"></div>' +
+        '<div id="set-password-success"></div>' +
+        '<input type="password" id="set-password-input" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="new-password" />' +
+        '<button type="button" id="set-password-submit">Guardar contraseña</button>' +
+        "</div>";
+      document.body.appendChild(overlay);
+
+      document.getElementById("set-password-submit").addEventListener("click", function () {
+        var btn = this;
+        var input = document.getElementById("set-password-input");
+        var errorEl = document.getElementById("set-password-error");
+        var successEl = document.getElementById("set-password-success");
+        errorEl.style.display = "none";
+        successEl.style.display = "none";
+
+        var password = input.value;
+        if (!password || password.length < 6) {
+          errorEl.textContent = "La contraseña debe tener al menos 6 caracteres.";
+          errorEl.style.display = "block";
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Guardando…";
+
+        fetch(IDENTITY_URL + "/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ type: gotrueType, token: token, password: password })
+        })
+          .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            if (!result.ok) throw new Error((result.data && result.data.msg) || "No se pudo completar.");
+            successEl.textContent = "¡Listo! Tu contraseña quedó creada. Redirigiendo al login…";
+            successEl.style.display = "block";
+            input.style.display = "none";
+            btn.style.display = "none";
+            setTimeout(function () {
+              window.location.href = window.location.pathname;
+            }, 1800);
+          })
+          .catch(function (err) {
+            errorEl.textContent = err.message || "No se pudo completar. El link puede haber vencido — pide una invitación nueva.";
+            errorEl.style.display = "block";
+            btn.disabled = false;
+            btn.textContent = "Guardar contraseña";
+          });
+      });
+    })();
   </script>
 
   <!-- Decap CMS (git-based, no traditional backend). Configuration: admin/config.yml -->
