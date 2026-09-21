@@ -351,7 +351,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
             <span class="badge badge-status-${p.status}">${statusLabels[p.status] || p.status}</span>
           </div>
           <h1>${escapeXml(p.title)}</h1>
-          <p style="color:var(--color-gray-500)">${escapeXml([p.address, p.city, p.municipality].filter(Boolean).join(", "))}</p>
+          <p style="color:var(--color-gray-500)">${escapeXml([p.address, p.city, p.country].filter(Boolean).join(", "))}</p>
         </div>
         <div class="property-price-block">
           <div class="price">${priceLabel || "[AGREGAR INFORMACIÓN]"}</div>

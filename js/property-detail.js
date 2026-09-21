@@ -63,7 +63,7 @@
       el.textContent = window.JFProperties.fmtPrice(p.price, p.currency, p.status);
     });
     document.querySelectorAll("[data-field='location']").forEach(function (el) {
-      el.textContent = [p.address, p.city, p.municipality].filter(Boolean).join(", ");
+      el.textContent = [p.address, p.city, p.country].filter(Boolean).join(", ");
     });
     document.querySelectorAll("[data-field='status-badge']").forEach(function (el) {
       el.textContent = t("status." + p.status, lang);

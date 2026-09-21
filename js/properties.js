@@ -42,7 +42,7 @@
       '<div class="property-card-price">' + fmtPrice(p.price, p.currency, p.status) +
       (p.propertyType ? ' <small>· ' + t("type." + p.propertyType, lang) + "</small>" : "") + "</div>" +
       '<h3 class="property-card-title"><a href="' + propertyUrl(p) + '">' + escapeHtml(p.title) + "</a></h3>" +
-      '<div class="property-card-location">' + escapeHtml([p.address, p.city, p.municipality].filter(Boolean).join(", ")) + "</div>" +
+      '<div class="property-card-location">' + escapeHtml([p.address, p.city, p.country].filter(Boolean).join(", ")) + "</div>" +
       '<div class="property-card-meta">' + specLine(p, lang) + "</div>" +
       '<a href="' + propertyUrl(p) + '" class="btn btn-outline btn-sm btn-block">' + t("properties.card.viewdetails", lang) + "</a>" +
       "</div>" +
