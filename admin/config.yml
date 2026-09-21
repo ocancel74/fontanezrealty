@@ -13,6 +13,12 @@
 backend:
   name: git-gateway
   branch: main
+  # Explicit, since the CMS itself is hosted on GitHub Pages, not on
+  # Netlify — without this, git-gateway assumes Identity/Git Gateway live
+  # on the CMS's own origin and fails with "No se pudo acceder a la
+  # configuración de Identity".
+  identity_url: https://fontanezrealty-cms.netlify.app/.netlify/identity
+  gateway_url: https://fontanezrealty-cms.netlify.app/.netlify/git
 
 # Public site root used to preview entries while editing.
 site_url: https://ocancel74.github.io/fontanezrealty
