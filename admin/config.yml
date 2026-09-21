@@ -26,7 +26,7 @@ display_url: https://ocancel74.github.io/fontanezrealty
 logo_url: ../assets/icons/favicon.svg
 
 # Media uploaded through the global media picker (agent photo, hero image, etc.)
-media_folder: "assets/images/uploads"
+media_folder: "/assets/images/uploads"
 public_folder: "assets/images/uploads"
 
 publish_mode: simple
@@ -126,12 +126,12 @@ collections:
         widget: image
         required: false
         i18n: duplicate
-        media_folder: "assets/properties/{{fields.propertyId}}"
+        media_folder: "/assets/properties/{{fields.propertyId}}"
         public_folder: "assets/properties/{{fields.propertyId}}"
       - name: gallery
         label: "Galería (hasta 30 fotos)"
         widget: list
-        field: { name: image, label: Imagen, widget: image, media_folder: "assets/properties/{{fields.propertyId}}", public_folder: "assets/properties/{{fields.propertyId}}" }
+        field: { name: image, label: Imagen, widget: image, media_folder: "/assets/properties/{{fields.propertyId}}", public_folder: "assets/properties/{{fields.propertyId}}" }
         max: 30
         required: false
         i18n: true # Nota: Decap CMS no soporta "duplicate" en widgets de tipo list;
@@ -156,7 +156,7 @@ collections:
         widget: image
         required: false
         i18n: duplicate
-        media_folder: "assets/images/uploads/testimonials"
+        media_folder: "/assets/images/uploads/testimonials"
         public_folder: "assets/images/uploads/testimonials"
       - { name: published, label: "Publicado", widget: boolean, default: false, i18n: duplicate }
 
@@ -181,14 +181,14 @@ collections:
             widget: image
             required: false
             i18n: duplicate
-            media_folder: "assets/images/uploads"
+            media_folder: "/assets/images/uploads"
             public_folder: "assets/images/uploads"
           - name: heroImage
             label: "Fotografía del Hero (Home)"
             widget: image
             required: false
             i18n: duplicate
-            media_folder: "assets/images/uploads"
+            media_folder: "/assets/images/uploads"
             public_folder: "assets/images/uploads"
           - { name: agentBio, label: "Sobre Joe (texto libre)", widget: markdown, required: false, i18n: true, hint: "No inventar experiencia, premios ni certificaciones. Deja vacío si no hay información confirmada." }
 
