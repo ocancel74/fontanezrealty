@@ -1,17 +1,17 @@
 ---
 title: "Villa moderna con piscina — 5 habitaciones"
 published: true
-featured: false
+featured: true
 status: "for_sale"
 propertyType: "house"
-price:
-address: "[AGREGAR INFORMACIÓN]"
-city: "[AGREGAR INFORMACIÓN]"
-municipality: "[AGREGAR INFORMACIÓN]"
+price: 1000000
+address: "Bo. Mamey 1"
+city: "Guaynabo"
+municipality: "Guaynabo"
 zip: "[AGREGAR INFORMACIÓN]"
 bedrooms: 5
 bathrooms: 2
-interiorArea:
+interiorArea: 5475
 lotArea:
 yearBuilt:
 parking:
@@ -34,8 +34,4 @@ description: |
   Villa moderna de dos niveles con piscina, terraza en la azotea y amplios
   ventanales de piso a techo. Diseño contemporáneo con acabados en tonos
   claros y áreas sociales integradas con el exterior.
-
-  [AGREGAR INFORMACIÓN] — completa aquí la dirección, precio y demás
-  detalles reales de esta propiedad desde el CMS antes de compartirla con
-  clientes.
 ---

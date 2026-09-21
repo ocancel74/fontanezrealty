@@ -1,17 +1,17 @@
 ---
 title: "Modern pool villa — 5 bedrooms"
 published: true
-featured: false
+featured: true
 status: "for_sale"
 propertyType: "house"
-price:
-address: "[AGREGAR INFORMACIÓN]"
-city: "[AGREGAR INFORMACIÓN]"
-municipality: "[AGREGAR INFORMACIÓN]"
+price: 1000000
+address: "Bo. Mamey 1"
+city: "Guaynabo"
+municipality: "Guaynabo"
 zip: "[AGREGAR INFORMACIÓN]"
 bedrooms: 5
 bathrooms: 2
-interiorArea:
+interiorArea: 5475
 lotArea:
 yearBuilt:
 parking:
@@ -34,7 +34,4 @@ description: |
   Modern two-story villa with a pool, rooftop terrace, and floor-to-ceiling
   windows throughout. Contemporary design with light-toned finishes and
   social areas that open onto the outdoors.
-
-  [AGREGAR INFORMACIÓN] — fill in the real address, price and remaining
-  details for this property from the CMS before sharing it with clients.
 ---
