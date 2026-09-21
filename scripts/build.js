@@ -43,7 +43,7 @@ const PLACEHOLDER_DOMAIN = "https://REEMPLAZAR-CON-TU-DOMINIO.example.com";
 const COPY_EXCLUDE = new Set([
   "content", "scripts", "node_modules", ".git", ".github",
   "package.json", "package-lock.json", "README.md", "JOE-CMS-GUIDE.md",
-  "_site", ".gitignore"
+  "_site", ".gitignore", "_redirects"
 ]);
 
 const FEATURE_LABELS = {

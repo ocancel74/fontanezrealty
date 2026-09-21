@@ -1,0 +1,6 @@
+# Only used by the fontanezrealty-cms Netlify project (Identity/Git Gateway
+# only — the public site is on GitHub Pages, this file has no effect there).
+# Netlify Identity's invite/confirmation/recovery emails link to this site's
+# root; send them straight to the CMS instead. The #token=... fragment is
+# preserved automatically by the browser across a same-origin redirect.
+/  /admin/  302
