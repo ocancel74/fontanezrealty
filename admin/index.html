@@ -11,6 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Panel administrativo — Joe Fontanez Real Estate</title>
+  <!-- Warm up the connection to the Identity/Git Gateway project early —
+       it's a different domain than this CMS, and every millisecond here
+       reduces the odds of Decap's internal init race (see below) firing. -->
+  <link rel="preconnect" href="https://fontanezrealty-cms.netlify.app" crossorigin>
+  <link rel="dns-prefetch" href="https://fontanezrealty-cms.netlify.app">
   <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
   <style>
     body { font-family: -apple-system, sans-serif; }
@@ -67,6 +72,19 @@
         }
       });
       window.netlifyIdentity.init({ APIUrl: IDENTITY_URL });
+
+      // Decap CMS's git-gateway backend races the widget's own "init" event
+      // against a 2.5s timeout; if our cross-domain identity settings fetch
+      // hasn't finished by then (slower than same-origin, since it's a
+      // separate Netlify project), Decap impatiently calls
+      // netlifyIdentity.init() again with NO options, silently resetting it
+      // to same-origin defaults and breaking everything ("No se pudo
+      // acceder a la configuración de Identity"). Re-assert our config
+      // afterwards so ours always wins the race, regardless of network
+      // timing.
+      setTimeout(function () {
+        window.netlifyIdentity.init({ APIUrl: IDENTITY_URL });
+      }, 3000);
     }
 
     // netlify-identity-widget's own automatic handling of #invite_token /
