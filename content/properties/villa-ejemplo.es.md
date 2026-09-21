@@ -22,14 +22,14 @@ features:
   - "pool"
   - "terrace"
   - "view"
-mainImage: "/assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
+mainImage: "assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
 gallery:
-  - image: "/assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
-  - image: "/assets/properties/villa-ejemplo/02-sala-comedor.jpg"
-  - image: "/assets/properties/villa-ejemplo/03-exterior-atardecer.jpg"
-  - image: "/assets/properties/villa-ejemplo/04-piscina-noche.jpg"
-  - image: "/assets/properties/villa-ejemplo/05-exterior-noche.jpg"
-  - image: "/assets/properties/villa-ejemplo/06-escalera-terraza.jpg"
+  - image: "assets/properties/villa-ejemplo/01-piscina-aerea.jpg"
+  - image: "assets/properties/villa-ejemplo/02-sala-comedor.jpg"
+  - image: "assets/properties/villa-ejemplo/03-exterior-atardecer.jpg"
+  - image: "assets/properties/villa-ejemplo/04-piscina-noche.jpg"
+  - image: "assets/properties/villa-ejemplo/05-exterior-noche.jpg"
+  - image: "assets/properties/villa-ejemplo/06-escalera-terraza.jpg"
 description: |
   Villa moderna de dos niveles con piscina, terraza en la azotea y amplios
   ventanales de piso a techo. Diseño contemporáneo con acabados en tonos

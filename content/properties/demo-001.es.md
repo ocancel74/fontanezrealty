@@ -22,9 +22,9 @@ features:
   - "view"
   - "pool"
   - "security"
-mainImage: "/assets/properties/demo-001/placeholder.svg"
+mainImage: "assets/properties/demo-001/placeholder.svg"
 gallery:
-  - image: "/assets/properties/demo-001/placeholder.svg"
+  - image: "assets/properties/demo-001/placeholder.svg"
 description: |
   Esta es una propiedad de ejemplo incluida solo para mostrar cómo se ve una
   ficha completa en el sitio. Está marcada como "Sin publicar" por defecto,

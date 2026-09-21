@@ -22,9 +22,9 @@ features:
   - "view"
   - "pool"
   - "security"
-mainImage: "/assets/properties/demo-001/placeholder.svg"
+mainImage: "assets/properties/demo-001/placeholder.svg"
 gallery:
-  - image: "/assets/properties/demo-001/placeholder.svg"
+  - image: "assets/properties/demo-001/placeholder.svg"
 description: |
   This is a sample property included only to show what a full listing looks
   like on the site. It is marked "Unpublished" by default, so it will not

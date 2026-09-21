@@ -233,7 +233,8 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
   const images = (p.gallery.length ? p.gallery : [p.mainImage]).filter(Boolean);
   const galleryHtml = images.slice(0, 5).map((src, i) => {
     const extra = i === 4 && images.length > 5 ? ` class="gallery-more" data-count="+${images.length - 5}"` : "";
-    return `<a href="${src}" target="_blank" rel="noopener"${extra}><img src="${src}" alt="${escapeXml(p.title)} ${i + 1}" loading="lazy"></a>`;
+    const href = root + src;
+    return `<a href="${href}" target="_blank" rel="noopener"${extra}><img src="${href}" alt="${escapeXml(p.title)} ${i + 1}" loading="lazy"></a>`;
   }).join("");
 
   const featureLabels = FEATURE_LABELS[lang] || FEATURE_LABELS.es;
