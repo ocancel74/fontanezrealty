@@ -1,0 +1,200 @@
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# IMPORTANT — before this works you must:
+#   1. Replace `repo` below with your GitHub "owner/repository".
+#   2. Replace `base_url` with your deployed OAuth provider URL (see README.md,
+#      section "Configurar autenticación del CMS"). GitHub Pages cannot host
+#      the OAuth token exchange itself (it needs a server-side client secret),
+#      so a small separate OAuth provider is required — this is normal for
+#      any Decap/Netlify-CMS site hosted on GitHub Pages.
+#   3. Create a GitHub OAuth App pointing at that same OAuth provider.
+# None of this involves putting secrets in this repository.
+
+backend:
+  name: github
+  repo: REEMPLAZAR-CON/owner-repo # ejemplo: joefontanez/joefontanez-realestate
+  branch: main
+  base_url: https://REEMPLAZAR-CON-TU-OAUTH-PROVIDER.example.com
+  auth_endpoint: auth
+
+# Public site root used to preview entries while editing.
+site_url: https://REEMPLAZAR-CON-TU-DOMINIO.example.com
+display_url: https://REEMPLAZAR-CON-TU-DOMINIO.example.com
+logo_url: /assets/icons/favicon.svg
+
+# Media uploaded through the global media picker (agent photo, hero image, etc.)
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+publish_mode: simple
+
+locale: "es"
+
+i18n:
+  structure: multiple_files
+  locales: [es, en]
+  default_locale: es
+
+collections:
+  - name: properties
+    label: Propiedades
+    label_singular: Propiedad
+    folder: content/properties
+    create: true
+    delete: true
+    i18n: true
+    slug: "{{fields.propertyId}}-{{slug}}"
+    summary: "{{title}} — {{price}} — {{status}}"
+    sortable_fields: ["title", "price", "status", "commit_date"]
+    view_filters:
+      - label: Featured
+        field: featured
+        pattern: "true"
+      - label: Publicadas
+        field: published
+        pattern: "true"
+      - label: En venta
+        field: status
+        pattern: "for_sale"
+    view_groups:
+      - label: Status
+        field: status
+    fields:
+      - { name: title, label: "Título", widget: string, i18n: true }
+      - { name: published, label: "Publicada", widget: boolean, default: false, i18n: duplicate }
+      - { name: featured, label: "Featured (destacada en Home)", widget: boolean, default: false, i18n: duplicate }
+      - name: status
+        label: "Status"
+        widget: select
+        i18n: duplicate
+        options:
+          - { label: "For Sale", value: "for_sale" }
+          - { label: "Pending", value: "pending" }
+          - { label: "Sold", value: "sold" }
+          - { label: "For Rent", value: "for_rent" }
+          - { label: "Rented", value: "rented" }
+        default: "for_sale"
+      - name: propertyType
+        label: "Tipo de propiedad"
+        widget: select
+        i18n: duplicate
+        options:
+          - { label: "Casa", value: "house" }
+          - { label: "Condominio", value: "condo" }
+          - { label: "Apartamento", value: "apartment" }
+          - { label: "Terreno", value: "land" }
+          - { label: "Comercial", value: "commercial" }
+          - { label: "Multifamiliar", value: "multi_family" }
+        default: "house"
+      - { name: price, label: "Precio (USD)", widget: number, value_type: float, i18n: duplicate }
+      - { name: address, label: "Dirección", widget: string, required: false, i18n: duplicate }
+      - { name: city, label: "Ciudad", widget: string, i18n: duplicate }
+      - { name: municipality, label: "Municipio", widget: string, required: false, i18n: duplicate }
+      - { name: zip, label: "Código postal", widget: string, required: false, i18n: duplicate }
+      - { name: bedrooms, label: "Habitaciones", widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: bathrooms, label: "Baños", widget: number, value_type: float, required: false, i18n: duplicate }
+      - { name: interiorArea, label: "Área interior (ft²)", widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: lotArea, label: "Área del terreno (ft²)", widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: yearBuilt, label: "Año de construcción", widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: parking, label: "Parking (espacios)", widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: hoa, label: "HOA / Mantenimiento mensual (USD)", widget: number, value_type: float, required: false, i18n: duplicate }
+      - { name: mlsId, label: "MLS ID", widget: string, required: false, i18n: duplicate }
+      - { name: propertyId, label: "Property ID (interno)", widget: string, i18n: duplicate }
+      - name: features
+        label: "Características"
+        widget: select
+        multiple: true
+        required: false
+        i18n: duplicate
+        options:
+          - { label: "Vista", value: "view" }
+          - { label: "Piscina", value: "pool" }
+          - { label: "Terraza", value: "terrace" }
+          - { label: "Balcón", value: "balcony" }
+          - { label: "Seguridad", value: "security" }
+          - { label: "Generador", value: "generator" }
+          - { label: "Cisterna", value: "cistern" }
+          - { label: "Gimnasio", value: "gym" }
+          - { label: "Muelle / Marina", value: "marina" }
+          - { label: "Amueblado", value: "furnished" }
+      - name: mainImage
+        label: "Fotografía principal"
+        widget: image
+        required: false
+        i18n: duplicate
+        media_folder: "/assets/properties/{{fields.propertyId}}"
+        public_folder: "/assets/properties/{{fields.propertyId}}"
+      - name: gallery
+        label: "Galería (hasta 30 fotos)"
+        widget: list
+        field: { name: image, label: Imagen, widget: image, media_folder: "/assets/properties/{{fields.propertyId}}", public_folder: "/assets/properties/{{fields.propertyId}}" }
+        max: 30
+        required: false
+        i18n: true # Nota: Decap CMS no soporta "duplicate" en widgets de tipo list;
+                   # esto implica subir las fotos en cada idioma. Ver README.
+      - { name: description, label: "Descripción", widget: markdown, i18n: true, required: false }
+
+  - name: testimonials
+    label: Testimonios
+    label_singular: Testimonio
+    folder: content/testimonials
+    create: true
+    delete: true
+    i18n: true
+    slug: "{{fields.name}}-{{slug}}"
+    summary: "{{name}} — {{published}}"
+    fields:
+      - { name: name, label: "Nombre", widget: string, i18n: duplicate }
+      - { name: text, label: "Testimonio", widget: text, i18n: true }
+      - { name: date, label: "Fecha (opcional)", widget: datetime, required: false, i18n: duplicate }
+      - name: photo
+        label: "Foto (opcional)"
+        widget: image
+        required: false
+        i18n: duplicate
+        media_folder: "/assets/images/uploads/testimonials"
+        public_folder: "/assets/images/uploads/testimonials"
+      - { name: published, label: "Publicado", widget: boolean, default: false, i18n: duplicate }
+
+  - name: settings
+    label: Configuración
+    editor: { preview: false }
+    files:
+      - name: general
+        label: "Configuración general"
+        file: content/settings/general.yml
+        i18n: true
+        fields:
+          - { name: siteUrl, label: "URL final del sitio (para SEO)", widget: string, hint: "Ej. https://joefontanez.com o https://usuario.github.io/repositorio", i18n: duplicate }
+          - { name: agentName, label: "Nombre del agente", widget: string, default: "Joe Fontanez", i18n: duplicate }
+          - { name: agentTitle, label: "Título profesional", widget: string, default: "Real Estate Broker", i18n: duplicate }
+          - { name: license, label: "Número de licencia", widget: string, default: "Lic. 12114", i18n: duplicate }
+          - { name: email, label: "Email de contacto", widget: string, default: "Joefontanez0707@gmail.com", i18n: duplicate }
+          - { name: whatsappNumber, label: "Número de WhatsApp (con código de país, solo números)", widget: string, required: false, hint: "Ej. 17871234567. Déjalo vacío para ocultar el botón de WhatsApp.", i18n: duplicate }
+          - { name: formspreeEndpoint, label: "Endpoint de Formspree para el formulario de contacto", widget: string, required: false, hint: "Ej. https://formspree.io/f/xxxxxx — ver README.", i18n: duplicate }
+          - name: agentPhoto
+            label: "Fotografía profesional de Joe"
+            widget: image
+            required: false
+            i18n: duplicate
+            media_folder: "/assets/images/uploads"
+            public_folder: "/assets/images/uploads"
+          - name: heroImage
+            label: "Fotografía del Hero (Home)"
+            widget: image
+            required: false
+            i18n: duplicate
+            media_folder: "/assets/images/uploads"
+            public_folder: "/assets/images/uploads"
+          - { name: agentBio, label: "Sobre Joe (texto libre)", widget: markdown, required: false, i18n: true, hint: "No inventar experiencia, premios ni certificaciones. Deja vacío si no hay información confirmada." }
+
+      - name: areas
+        label: "Áreas de servicio"
+        file: content/settings/areas.yml
+        fields:
+          - name: items
+            label: "Áreas"
+            widget: list
+            summary: "{{fields.name}}"
+            field: { name: name, label: "Nombre del área", widget: string }

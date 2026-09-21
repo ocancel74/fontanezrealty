@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Responsive breakpoints — desktop-first overrides
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  .property-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .areas-grid { grid-template-columns: repeat(3, 1fr); }
+  .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+  .filters-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-layout { grid-template-columns: 1fr; }
+  .agent-photo { max-width: 340px; margin: 0 auto; }
+  .property-body-grid { grid-template-columns: 1fr; }
+  .sidebar-card { position: static; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .main-nav,
+  .header-actions .lang-switch,
+  .header-actions .btn {
+    display: none;
+  }
+
+  .nav-toggle { display: flex; }
+
+  .header-actions { gap: 10px; }
+
+  .mobile-nav {
+    display: block;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-white);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    z-index: 999;
+    padding: 32px var(--gutter);
+    overflow-y: auto;
+  }
+
+  .mobile-nav.is-open { transform: translateX(0); }
+
+  .mobile-nav a {
+    display: block;
+    padding: 16px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .mobile-nav .lang-switch {
+    margin-top: 24px;
+    font-size: 0.95rem;
+  }
+
+  .mobile-nav .btn { margin-top: 24px; }
+
+  .hero { min-height: 88vh; }
+  .hero-stats { gap: 26px; }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 160px);
+  }
+  .gallery a:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+
+  .property-title-row { flex-direction: column; }
+  .property-price-block { text-align: left; }
+}
+
+@media (max-width: 720px) {
+  .property-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .areas-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .filters-grid { grid-template-columns: 1fr 1fr; }
+  .filters-actions { grid-column: 1 / -1; }
+  .contact-form { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-list { grid-template-columns: 1fr; }
+  .section { padding: 60px 0; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .whatsapp-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
+  .error-page .code { font-size: 4rem; }
+}

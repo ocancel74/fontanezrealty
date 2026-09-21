@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard — Joe Fontanez Real Estate</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml" />
+  <style>
+    :root { font-family: "Inter", -apple-system, sans-serif; }
+    body { margin: 0; background: #faf9f6; color: #1a1a1a; padding: 40px 24px; }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    h1 { font-family: Georgia, serif; margin-bottom: 4px; }
+    p.note { color: #767676; font-size: 0.9rem; margin-top: 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 32px; }
+    .card { background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 24px; text-align: center; }
+    .card strong { display: block; font-size: 2rem; font-family: Georgia, serif; color: #b8925a; }
+    .card span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: #767676; }
+    a.back { display: inline-block; margin-top: 32px; color: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dashboard</h1>
+    <p class="note">
+      Refleja los datos de la última publicación (config/properties.es.json generado por GitHub Actions).
+      Este panel es de solo lectura; para editar propiedades usa la sección "Propiedades" del CMS.
+    </p>
+    <div class="grid" id="stats"></div>
+    <a class="back" href="index.html">← Volver al panel</a>
+  </div>
+  <script>
+    var labels = {
+      total: "Total de propiedades",
+      for_sale: "En venta",
+      pending: "Pendientes",
+      sold: "Vendidas",
+      for_rent: "En alquiler",
+      rented: "Alquiladas",
+      featured: "Featured",
+      published: "Publicadas",
+      unpublished: "Sin publicar"
+    };
+
+    fetch("../config/properties.es.json")
+      .then(function (res) { if (!res.ok) throw new Error("no data"); return res.json(); })
+      .then(function (list) {
+        var counts = { total: list.length, for_sale: 0, pending: 0, sold: 0, for_rent: 0, rented: 0, featured: 0, published: 0, unpublished: 0 };
+        list.forEach(function (p) {
+          if (counts[p.status] !== undefined) counts[p.status]++;
+          if (p.featured) counts.featured++;
+          if (p.published) counts.published++; else counts.unpublished++;
+        });
+        render(counts);
+      })
+      .catch(function () {
+        render(null);
+      });
+
+    function render(counts) {
+      var grid = document.getElementById("stats");
+      if (!counts) {
+        grid.innerHTML = '<p style="grid-column:1/-1;color:#767676">Aún no hay datos publicados. Este panel se llenará después de la primera publicación desde el CMS.</p>';
+        return;
+      }
+      grid.innerHTML = Object.keys(labels).map(function (key) {
+        return '<div class="card"><strong>' + counts[key] + '</strong><span>' + labels[key] + '</span></div>';
+      }).join("");
+    }
+  </script>
+</body>
+</html>

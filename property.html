@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle de propiedad | Joe Fontanez Real Estate</title>
+  <meta name="description" content="Detalle de propiedad — Joe Fontanez, Real Estate Broker Lic. 12114.">
+  <meta name="robots" content="noindex">
+  <!--
+    NOTA PARA DESARROLLADORES:
+    Esta página raíz es un visor de DESARROLLO que lee ?slug=xxx y busca la
+    propiedad en config/properties.<idioma>.json vía JavaScript. Útil para
+    previsualizar contenido del CMS localmente sin correr el build.
+
+    Las páginas de PRODUCCIÓN (indexadas por Google, compartibles con SEO/OG
+    correctos) son generadas por scripts/build.js en /properties/<slug>/ y
+    /properties/<slug>/en/ a partir de esta misma estructura de bloques
+    data-field, con las etiquetas <title>/<meta>/JSON-LD ya resueltas.
+  -->
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-property-root>
+
+  <header class="site-header is-solid">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-name">Joe Fontanez</span>
+        <span class="brand-tagline">Real Estate Broker</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-i18n="nav.home">Inicio</a>
+        <a href="properties.html" data-i18n="nav.properties">Propiedades</a>
+        <a href="about.html" data-i18n="nav.about">Sobre Joe</a>
+        <a href="services.html" data-i18n="nav.services">Servicios</a>
+        <a href="contact.html" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <button type="button" data-lang="es">ES</button><span>|</span><button type="button" data-lang="en">EN</button>
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Contactar a Joe</a>
+        <button class="nav-toggle" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav">
+      <a href="index.html" data-i18n="nav.home">Inicio</a>
+      <a href="properties.html" data-i18n="nav.properties">Propiedades</a>
+      <a href="about.html" data-i18n="nav.about">Sobre Joe</a>
+      <a href="services.html" data-i18n="nav.services">Servicios</a>
+      <a href="contact.html" data-i18n="nav.contact">Contacto</a>
+      <div class="lang-switch">
+        <button type="button" data-lang="es">ES</button><span>|</span><button type="button" data-lang="en">EN</button>
+      </div>
+      <a href="contact.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Contactar a Joe</a>
+    </nav>
+  </header>
+
+  <section class="property-detail-header">
+    <div class="container">
+      <div class="breadcrumbs" style="color:var(--color-gray-500)">
+        <a href="properties.html" data-i18n="detail.back">Volver a propiedades</a>
+      </div>
+      <div class="property-title-row">
+        <div>
+          <div class="badges">
+            <span class="badge" data-field="status-badge">Status</span>
+          </div>
+          <h1 data-field="title">Cargando…</h1>
+          <p style="color:var(--color-gray-500)" data-field="location"></p>
+        </div>
+        <div class="property-price-block">
+          <div class="price" data-field="price">—</div>
+          <div class="price-note" data-field="type-badge"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="gallery" data-field="gallery"></div>
+
+      <div class="property-body-grid">
+        <div>
+          <div class="spec-grid">
+            <div class="spec-item"><strong data-field="beds">—</strong><span data-i18n="detail.beds">Habs.</span></div>
+            <div class="spec-item"><strong data-field="baths">—</strong><span data-i18n="detail.baths">Baños</span></div>
+            <div class="spec-item"><strong data-field="area">—</strong><span data-i18n="detail.area">Área</span></div>
+            <div class="spec-item"><strong data-field="year">—</strong><span data-i18n="detail.year">Año</span></div>
+          </div>
+
+          <h2 data-i18n="detail.description">Descripción</h2>
+          <div data-field="description"></div>
+
+          <div data-block="features">
+            <h2 data-i18n="detail.features">Características</h2>
+            <ul class="feature-list" data-field="features"></ul>
+          </div>
+
+          <h2 data-i18n="detail.additional">Información adicional</h2>
+          <table class="info-table" data-field="info-table"></table>
+        </div>
+
+        <aside>
+          <div class="sidebar-card">
+            <h3 data-i18n="detail.sidebar.title">¿Interesado en esta propiedad?</h3>
+            <p data-i18n="detail.sidebar.subtitle">Escríbele a Joe para más información o para agendar una visita.</p>
+            <div class="sidebar-actions">
+              <a href="#" class="btn btn-primary" data-field="email-link" data-i18n="detail.requestinfo">Solicitar información</a>
+              <a href="contact.html" class="btn btn-outline" data-i18n="detail.contact">Contactar a Joe</a>
+              <a href="#" class="btn btn-whatsapp is-hidden" data-field="whatsapp-link" target="_blank" rel="noopener" data-i18n="detail.whatsapp">WhatsApp</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="brand-name">Joe Fontanez</span>
+          <p style="margin-top:10px" data-i18n="footer.tagline">Real Estate Broker · Lic. 12114</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.nav">Navegación</h4>
+          <ul>
+            <li><a href="properties.html" data-i18n="nav.properties">Propiedades</a></li>
+            <li><a href="about.html" data-i18n="nav.about">Sobre Joe</a></li>
+            <li><a href="services.html" data-i18n="nav.services">Servicios</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.contact">Contacto</h4>
+          <ul>
+            <li><a data-config-href="email" href="#" data-config="email">Joefontanez0707@gmail.com</a></li>
+            <li><a data-config-href="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.legal">Legal</h4>
+          <ul>
+            <li><a href="privacy.html" data-i18n="footer.privacy">Política de privacidad</a></li>
+            <li><a href="terms.html" data-i18n="footer.terms">Términos de uso</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-current-year>2026</span> Joe Fontanez. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float is-hidden" data-config-href="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2 0-3.9-.5-5.5-1.5l-.4-.2-4.6 1.2 1.2-4.5-.3-.4C5.2 17.7 4.6 16 4.6 15c0-5.7 4.7-10.4 10.4-10.4S26.4 9.3 26.4 15 21.7 24.8 16 24.8zm5.7-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6.1c-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2s0-.4.1-.6c.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>
+  </a>
+
+  <script src="js/language.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/properties.js"></script>
+  <script src="js/property-detail.js"></script>
+</body>
+</html>

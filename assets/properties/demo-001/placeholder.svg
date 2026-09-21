@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f1efe9"/>
+  <rect x="0" y="0" width="800" height="600" fill="none" stroke="#d6d3cc" stroke-width="2"/>
+  <text x="400" y="290" font-family="Inter, sans-serif" font-size="26" fill="#767676" text-anchor="middle">Foto de ejemplo</text>
+  <text x="400" y="325" font-family="Inter, sans-serif" font-size="16" fill="#a3a3a3" text-anchor="middle">Reemplazar desde el CMS · Properties</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "name": "joefontanez-realestate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static real estate site for Joe Fontanez, content managed via Decap CMS, built and deployed to GitHub Pages with GitHub Actions.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "node scripts/dev-server.js _site 5050"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "marked": "^12.0.2",
+    "sharp": "^0.35.4"
+  }
+}
