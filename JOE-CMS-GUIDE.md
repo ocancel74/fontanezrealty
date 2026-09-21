@@ -14,9 +14,13 @@ los cambios del día a día.
 
 ## Cómo entrar
 
-1. Abre el enlace del panel administrativo.
-2. Presiona "Iniciar sesión con GitHub".
-3. Inicia sesión con tu cuenta de GitHub (la que se configuró para ti).
+1. Vas a recibir un correo de invitación la primera vez — ábrelo y crea tu
+   contraseña (solo se hace una vez).
+2. Abre el enlace del panel administrativo.
+3. Escribe tu email y la contraseña que creaste, y presiona **Entrar**.
+
+Si alguna vez se te olvida la contraseña, hay una opción de "¿Olvidaste tu
+contraseña?" en esa misma pantalla.
 
 ---
 

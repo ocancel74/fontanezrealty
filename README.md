@@ -62,34 +62,30 @@ Si más adelante conectas un dominio personalizado (paso 6), actualiza
 `site_url`/`display_url` aquí y `siteUrl` en el CMS (Configuración →
 Configuración general) a la nueva URL.
 
-## 3. Configurar la autenticación (OAuth provider)
+## 3. Configurar la autenticación (Netlify Identity + Git Gateway)
 
-Necesitas desplegar un pequeño proveedor de OAuth para GitHub. Opción
-recomendada (gratis, sin tarjeta): **Vercel**.
+El login del CMS usa **Netlify Identity + Git Gateway**: Joe entra con un
+simple email + contraseña (no necesita cuenta de GitHub). Es gratis.
 
-1. Crea una GitHub OAuth App: GitHub → Settings → Developer settings → OAuth
-   Apps → New OAuth App.
-   - Homepage URL: la URL de tu sitio (o la de Vercel, provisionalmente).
-   - Authorization callback URL: `https://TU-OAUTH-PROVIDER.vercel.app/callback`
-   - Guarda el `Client ID` y el `Client secret` que te da GitHub.
-2. Despliega un proveedor de OAuth para Decap CMS en Vercel. Hay varias
-   implementaciones de código abierto listas para usar (por ejemplo
-   `decap-cms-oauth` de daresaydigital, o cualquier equivalente actualizado
-   que encuentres en GitHub buscando "decap cms oauth provider vercel").
-   Al desplegarlo en Vercel, configura como variables de entorno de Vercel
-   (nunca en este repositorio):
-   - `OAUTH_CLIENT_ID` = el Client ID de tu OAuth App
-   - `OAUTH_CLIENT_SECRET` = el Client secret de tu OAuth App
-3. Copia la URL que te da Vercel (ej. `https://mi-oauth.vercel.app`) y
-   pégala en `admin/config.yml` → `backend.base_url`.
-4. Haz commit y push del `config.yml` actualizado.
+1. Crea una cuenta en **netlify.com** (puedes usar tu GitHub).
+2. **Add new project → Import an existing project → GitHub** → selecciona
+   este repositorio (`ocancel74/fontanezrealty`). Los ajustes de build no
+   importan — este proyecto de Netlify solo se usa para el login, GitHub
+   Pages sigue publicando el sitio real. Dale **Deploy** tal cual.
+3. En ese proyecto → **Identity** → **Enable Identity**.
+4. **Identity → Registration** → cámbialo a **Invite only**.
+5. **Identity → Services → Git Gateway** → **Enable Git Gateway** (autoriza
+   el acceso a GitHub cuando lo pida).
+6. **Identity → Invite users** → escribe el correo de cada persona que deba
+   administrar el sitio. Le llega un correo para crear su propia contraseña.
 
-**Nunca pongas el Client secret dentro de este repositorio.** Vive únicamente
-como variable de entorno en Vercel (o el proveedor que uses).
+Este proyecto ya está configurado apuntando a
+`https://fontanezrealty-cms.netlify.app` en `admin/index.html`. Si alguna
+vez recreas el proyecto de Netlify con otro nombre, actualiza esa URL en
+ese archivo (busca `APIUrl`).
 
-El administrador inicial es **Joe Fontanez**, autenticado con su propia
-cuenta de GitHub (con acceso de escritura al repositorio). Se pueden invitar
-más colaboradores luego desde GitHub → Settings → Collaborators.
+No hay ningún secreto que guardar en este repositorio — Netlify maneja las
+contraseñas y el acceso a GitHub de forma independiente.
 
 ## 4. Activar GitHub Pages
 

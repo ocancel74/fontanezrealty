@@ -12,6 +12,27 @@
   </style>
 </head>
 <body>
+  <!--
+    Login: Netlify Identity + Git Gateway. The Netlify project below exists
+    only to run Identity/Git Gateway — GitHub Pages still hosts the public
+    site. Manage who can log in from that project's Identity tab.
+  -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function (user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function () {
+            document.location.href = "./";
+          });
+        }
+      });
+      window.netlifyIdentity.init({
+        APIUrl: "https://fontanezrealty-cms.netlify.app/.netlify/identity"
+      });
+    }
+  </script>
+
   <!-- Decap CMS (git-based, no traditional backend). Configuration: admin/config.yml -->
   <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
   <script>

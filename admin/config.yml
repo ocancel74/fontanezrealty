@@ -1,22 +1,18 @@
 # Decap CMS configuration
 # Docs: https://decapcms.org/docs/configuration-options/
 #
-# IMPORTANT — before login works you must still:
-#   1. Deploy an OAuth provider and replace `base_url` below with its URL
-#      (see README.md, section "Configurar autenticación del CMS"). GitHub
-#      Pages cannot host the OAuth token exchange itself (it needs a
-#      server-side client secret), so a small separate OAuth provider is
-#      required — this is normal for any Decap/Netlify-CMS site hosted on
-#      GitHub Pages.
-#   2. Create a GitHub OAuth App pointing at that same OAuth provider.
-# None of this involves putting secrets in this repository.
+# Authentication: Netlify Identity + Git Gateway. The Netlify project
+# "fontanezrealty-cms" (https://fontanezrealty-cms.netlify.app) exists only
+# to run Identity/Git Gateway — it does not host the public site, GitHub
+# Pages still does that. Git Gateway is linked to this same GitHub repo, so
+# whoever logs in via Netlify Identity can commit content changes here
+# without needing a GitHub account. Manage who can log in from that
+# project's Identity tab (Invite users). See admin/index.html for the
+# matching Identity widget setup.
 
 backend:
-  name: github
-  repo: ocancel74/fontanezrealty
+  name: git-gateway
   branch: main
-  base_url: https://REEMPLAZAR-CON-TU-OAUTH-PROVIDER.example.com
-  auth_endpoint: auth
 
 # Public site root used to preview entries while editing.
 site_url: https://ocancel74.github.io/fontanezrealty
