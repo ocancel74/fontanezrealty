@@ -9,6 +9,7 @@ address: "[AGREGAR INFORMACIÓN]"
 city: "San Juan"
 municipality: "San Juan"
 zip: "00907"
+country: "Puerto Rico"
 bedrooms: 2
 bathrooms: 2
 interiorArea: 1100

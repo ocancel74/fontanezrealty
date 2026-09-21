@@ -129,6 +129,7 @@ function buildProperties(lang) {
       city: raw.city || "",
       municipality: raw.municipality || "",
       zip: raw.zip || "",
+      country: raw.country || "",
       bedrooms: raw.bedrooms != null ? raw.bedrooms : null,
       bathrooms: raw.bathrooms != null ? raw.bathrooms : null,
       interiorArea: raw.interiorArea != null ? raw.interiorArea : null,
@@ -204,7 +205,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
         back: "Back to properties", sidebarTitle: "Interested in this property?",
         sidebarText: "Reach out to Joe for more information or to schedule a visit.",
         requestInfo: "Request information", contact: "Contact Joe", whatsapp: "WhatsApp",
-        address: "Address", municipality: "Municipality", zip: "Zip code", hoa: "HOA / Maintenance",
+        address: "Address", municipality: "Municipality", zip: "Zip code", country: "Country", hoa: "HOA / Maintenance",
         mls: "MLS ID", propertyId: "Property ID"
       }
     : {
@@ -213,7 +214,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
         back: "Volver a propiedades", sidebarTitle: "¿Interesado en esta propiedad?",
         sidebarText: "Escríbele a Joe para más información o para agendar una visita.",
         requestInfo: "Solicitar información", contact: "Contactar a Joe", whatsapp: "WhatsApp",
-        address: "Dirección", municipality: "Municipio", zip: "Código postal", hoa: "HOA / Mantenimiento",
+        address: "Dirección", municipality: "Municipio", zip: "Código postal", country: "País", hoa: "HOA / Mantenimiento",
         mls: "MLS ID", propertyId: "Property ID"
       };
 
@@ -243,6 +244,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
     [t.address, escapeXml(p.address)],
     [t.municipality, escapeXml(p.municipality)],
     [t.zip, escapeXml(p.zip)],
+    [t.country, escapeXml(p.country)],
     [t.hoa, p.hoa ? "$" + Number(p.hoa).toLocaleString() : ""],
     [t.mls, escapeXml(p.mlsId)],
     [t.propertyId, escapeXml(p.propertyId)]

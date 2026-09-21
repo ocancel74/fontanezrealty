@@ -9,6 +9,7 @@ address: "Bo. Mamey 1"
 city: "Guaynabo"
 municipality: "Guaynabo"
 zip: "00971"
+country: "Puerto Rico"
 bedrooms: 5
 bathrooms: 2
 interiorArea: 5475

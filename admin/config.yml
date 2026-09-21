@@ -92,6 +92,7 @@ collections:
       - { name: city, label: "Ciudad", widget: string, i18n: duplicate }
       - { name: municipality, label: "Municipio", widget: string, required: false, i18n: duplicate }
       - { name: zip, label: "Código postal", widget: string, required: false, i18n: duplicate }
+      - { name: country, label: "País", widget: string, required: false, default: "Puerto Rico", i18n: duplicate }
       - { name: bedrooms, label: "Habitaciones", widget: number, value_type: int, required: false, i18n: duplicate }
       - { name: bathrooms, label: "Baños", widget: number, value_type: float, required: false, i18n: duplicate }
       - { name: interiorArea, label: "Área interior (ft²)", widget: number, value_type: int, required: false, i18n: duplicate }

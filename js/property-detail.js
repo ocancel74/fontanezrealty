@@ -95,6 +95,7 @@
         infoRow(t("detail.address", lang), escapeHtml(p.address)) +
         infoRow(t("detail.municipality", lang), escapeHtml(p.municipality)) +
         infoRow(t("detail.zip", lang), escapeHtml(p.zip)) +
+        infoRow(t("detail.country", lang), escapeHtml(p.country)) +
         infoRow(t("detail.hoa", lang), p.hoa ? "$" + Number(p.hoa).toLocaleString() : "") +
         infoRow(t("detail.mls", lang), escapeHtml(p.mlsId)) +
         infoRow(t("detail.propertyid", lang), escapeHtml(p.propertyId));
