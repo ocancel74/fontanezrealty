@@ -16,13 +16,13 @@
       "nav.services": "Servicios",
       "nav.areas": "Áreas",
       "nav.contact": "Contacto",
-      "nav.cta": "Contactar a Joe",
+      "nav.cta": "Contactar a Joe Fontanez",
 
       "hero.eyebrow": "Bienes Raíces en Puerto Rico",
       "hero.title": "Encuentra tu próximo hogar en Puerto Rico",
       "hero.subtitle": "Compra, venta e inversión inmobiliaria con acompañamiento personalizado en cada paso del proceso.",
       "hero.cta.properties": "Ver propiedades",
-      "hero.cta.contact": "Contactar a Joe",
+      "hero.cta.contact": "Contactar a Joe Fontanez",
 
       "home.featured.eyebrow": "Selección",
       "home.featured.title": "Propiedades destacadas",
@@ -44,7 +44,7 @@
 
       "home.cta.title": "¿Listo para encontrar tu próxima propiedad?",
       "home.cta.subtitle": "Escríbele a Joe y da el siguiente paso hoy mismo.",
-      "home.cta.button": "Contactar a Joe",
+      "home.cta.button": "Contactar a Joe Fontanez",
 
       "properties.hero.title": "Propiedades",
       "properties.hero.subtitle": "Explora el inventario disponible y filtra según lo que buscas.",
@@ -113,7 +113,7 @@
       "detail.sidebar.title": "¿Interesado en esta propiedad?",
       "detail.sidebar.subtitle": "Escríbele a Joe para más información o para agendar una visita.",
       "detail.requestinfo": "Solicitar información",
-      "detail.contact": "Contactar a Joe",
+      "detail.contact": "Contactar a Joe Fontanez",
       "detail.whatsapp": "WhatsApp",
       "detail.back": "Volver a propiedades",
       "detail.notfound.title": "Propiedad no encontrada",
@@ -178,13 +178,13 @@
       "nav.services": "Services",
       "nav.areas": "Areas",
       "nav.contact": "Contact",
-      "nav.cta": "Contact Joe",
+      "nav.cta": "Contact Joe Fontanez",
 
       "hero.eyebrow": "Real Estate in Puerto Rico",
       "hero.title": "Find your next home in Puerto Rico",
       "hero.subtitle": "Buying, selling, and real estate investment with personalized guidance at every step.",
       "hero.cta.properties": "View properties",
-      "hero.cta.contact": "Contact Joe",
+      "hero.cta.contact": "Contact Joe Fontanez",
 
       "home.featured.eyebrow": "Selection",
       "home.featured.title": "Featured properties",
@@ -206,7 +206,7 @@
 
       "home.cta.title": "Ready to find your next property?",
       "home.cta.subtitle": "Reach out to Joe and take the next step today.",
-      "home.cta.button": "Contact Joe",
+      "home.cta.button": "Contact Joe Fontanez",
 
       "properties.hero.title": "Properties",
       "properties.hero.subtitle": "Browse the available inventory and filter by what you're looking for.",
@@ -275,7 +275,7 @@
       "detail.sidebar.title": "Interested in this property?",
       "detail.sidebar.subtitle": "Reach out to Joe for more information or to schedule a visit.",
       "detail.requestinfo": "Request information",
-      "detail.contact": "Contact Joe",
+      "detail.contact": "Contact Joe Fontanez",
       "detail.whatsapp": "WhatsApp",
       "detail.back": "Back to properties",
       "detail.notfound.title": "Property not found",

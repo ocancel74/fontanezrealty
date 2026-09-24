@@ -130,12 +130,13 @@ Si no marcas "Publicado", el testimonio queda guardado pero no se muestra.
 5. Para eliminar: presiona el ícono de basura junto al área.
 6. **Save** (o **Publish**, según cómo esté configurado).
 
-## Cómo cambiar tu información (Sobre Joe, email, WhatsApp, foto)
+## Cómo cambiar tu información (Sobre Joe, email, teléfono, WhatsApp, foto)
 
 1. **Configuración** → **Configuración general**.
 2. Ahí puedes cambiar:
    - Nombre, título profesional y número de licencia.
    - Email de contacto.
+   - Teléfono (déjalo vacío si todavía no quieres mostrarlo en el sitio).
    - Número de WhatsApp (déjalo vacío si todavía no quieres mostrar el
      botón de WhatsApp).
    - Tu fotografía profesional.

@@ -19,6 +19,16 @@
     return digits ? "https://wa.me/" + digits + (text ? "?text=" + text : "") : "#";
   }
 
+  function formatPhone(number) {
+    var digits = (number || "").replace(/[^0-9]/g, "");
+    // Expect country code 1 + 10-digit US/PR number; fall back to raw digits.
+    if (digits.length === 11 && digits.charAt(0) === "1") {
+      var d = digits.slice(1);
+      return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
+    }
+    return number || "";
+  }
+
   function initHeader() {
     var header = document.querySelector(".site-header");
     if (!header) return;
@@ -69,6 +79,14 @@
     });
     document.querySelectorAll('[data-config="email"]').forEach(function (el) {
       el.textContent = config.email || "[AGREGAR INFORMACIÓN]";
+    });
+    document.querySelectorAll('[data-config-href="phone"]').forEach(function (el) {
+      var digits = (config.phone || "").replace(/[^0-9]/g, "");
+      el.href = digits ? "tel:+" + digits : "#";
+      el.classList.toggle("is-hidden", !config.phone);
+    });
+    document.querySelectorAll('[data-config="phone"]').forEach(function (el) {
+      el.textContent = formatPhone(config.phone) || "[AGREGAR INFORMACIÓN]";
     });
     document.querySelectorAll('[data-config="agentName"]').forEach(function (el) {
       el.textContent = config.agentName || "Joe Fontanez";

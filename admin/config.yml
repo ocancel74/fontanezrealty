@@ -178,6 +178,7 @@ collections:
           - { name: agentTitle, label: "Título profesional", widget: string, default: "Real Estate Broker", i18n: duplicate }
           - { name: license, label: "Número de licencia", widget: string, default: "Lic. 12114", i18n: duplicate }
           - { name: email, label: "Email de contacto", widget: string, default: "Joefontanez0707@gmail.com", i18n: duplicate }
+          - { name: phone, label: "Teléfono (con código de país, solo números)", widget: string, required: false, hint: "Ej. 17872343913. Déjalo vacío para ocultar el teléfono.", i18n: duplicate }
           - { name: whatsappNumber, label: "Número de WhatsApp (con código de país, solo números)", widget: string, required: false, hint: "Ej. 17871234567. Déjalo vacío para ocultar el botón de WhatsApp.", i18n: duplicate }
           - { name: formspreeEndpoint, label: "Endpoint de Formspree para el formulario de contacto", widget: string, required: false, hint: "Ej. https://formspree.io/f/xxxxxx — ver README.", i18n: duplicate }
           - name: agentPhoto

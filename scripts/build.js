@@ -181,6 +181,7 @@ function buildSiteConfig(general) {
     agentTitle: es.agentTitle || "Real Estate Broker",
     license: es.license || "Lic. 12114",
     email: es.email || "Joefontanez0707@gmail.com",
+    phone: es.phone || "",
     whatsappNumber: es.whatsappNumber || "",
     formspreeEndpoint: es.formspreeEndpoint || "",
     agentPhoto: es.agentPhoto || "",
@@ -214,7 +215,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
         desc: "Description", features: "Features", additional: "Additional information",
         back: "Back to properties", sidebarTitle: "Interested in this property?",
         sidebarText: "Reach out to Joe for more information or to schedule a visit.",
-        requestInfo: "Request information", contact: "Contact Joe", whatsapp: "WhatsApp",
+        requestInfo: "Request information", contact: "Contact Joe Fontanez", whatsapp: "WhatsApp",
         address: "Address", municipality: "Municipality", zip: "Zip code", country: "Country", hoa: "HOA / Maintenance",
         mls: "MLS ID", propertyId: "Property ID"
       }
@@ -223,7 +224,7 @@ function propertyPageHtml(p, siteConfig, otherLangHref) {
         desc: "Descripción", features: "Características", additional: "Información adicional",
         back: "Volver a propiedades", sidebarTitle: "¿Interesado en esta propiedad?",
         sidebarText: "Escríbele a Joe para más información o para agendar una visita.",
-        requestInfo: "Solicitar información", contact: "Contactar a Joe", whatsapp: "WhatsApp",
+        requestInfo: "Solicitar información", contact: "Contactar a Joe Fontanez", whatsapp: "WhatsApp",
         address: "Dirección", municipality: "Municipio", zip: "Código postal", country: "País", hoa: "HOA / Mantenimiento",
         mls: "MLS ID", propertyId: "Property ID"
       };
