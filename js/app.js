@@ -105,7 +105,7 @@
     document.querySelectorAll('[data-config-bg="heroImage"]').forEach(function (el) {
       if (config.heroImage) {
         el.style.backgroundImage =
-          "linear-gradient(180deg, rgba(15,15,15,0.5), rgba(15,15,15,0.78)), url('" + config.heroImage + "')";
+          "linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.78)), url('" + config.heroImage + "')";
       }
     });
 

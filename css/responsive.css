@@ -16,7 +16,7 @@
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .main-nav,
   .header-actions .lang-switch,
   .header-actions .btn {
@@ -73,6 +73,9 @@
 }
 
 @media (max-width: 720px) {
+  .hero { padding: calc(var(--header-height) + 40px) 0 80px; }
+  .hero h1 { max-width: 11ch; }
+  .brand-name { font-size: 1.5rem; }
   .property-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .areas-grid { grid-template-columns: repeat(2, 1fr); }
